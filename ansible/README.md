@@ -13,6 +13,8 @@
 9. Run `ansible-playbook playbooks/site.yml --list-hosts` to list hosts targeted by the playbook
 10. Run `ansible-playbook playbooks/site.yml --extra-vars "key=value"` to pass extra variables to playbook
 11. Run `ansible-inventory -i inventory/hosts.yml --graph` to visualize inventory structure
+12. Run `ansible all -m ping` to ping all hosts in the inventory
+13. Run `ansible webservers -m shell -a "your_bash_command_here"` to execute a shell command on hosts in the `webservers` group
 
 ## Intermediate role examples
 
@@ -24,6 +26,7 @@ The `intermediate` role demonstrates common Ansible patterns in separate task fi
 - `tasks/async.yml`: asynchronous execution with polling
 - `tasks/blocks.yml`: `block`, `rescue`, and `always`
 - `tasks/modules.yml`: file/copy/package facts and handlers
+- `tasks/conditions.yml`: examples of `when` and `with_items`
 
 Useful runs:
 
