@@ -1,0 +1,8 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check curl is installed
+      ansible.builtin.command: curl --version
+      changed_when: false

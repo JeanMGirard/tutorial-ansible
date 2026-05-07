@@ -1,0 +1,10 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform.lock.hcl
+ansible/.generated/
+ansible/inventory/*
+__pycache__/
+*.pyc
+.molecule/

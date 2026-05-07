@@ -1,0 +1,6 @@
+---
+- name: Configure EC2 tutorial host
+  hosts: ec2
+  become: true
+  roles:
+    - common
