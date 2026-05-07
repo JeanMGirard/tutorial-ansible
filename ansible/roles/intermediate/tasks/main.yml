@@ -5,6 +5,11 @@
     - intermediate
     - loops
 
+- name: Intermediate | Manual approval
+  ansible.builtin.include_tasks: manual_approval.yml
+  tags:
+    - manual_approval
+
 - name: Intermediate | use conditions
   ansible.builtin.include_tasks: conditions.yml
   tags:

@@ -1,0 +1,26 @@
+---
+# also possible to use vars_prompt in playbook
+#  vars_prompt:
+#    - name: username
+#      prompt: "Enter your username"
+#      private: no
+#    - name: password
+#      prompt: "Enter your password"
+#      private: yes
+- name: Manual approval
+  tags: manual_approval
+  register: approval
+  pause:
+    prompt: "Please approve this step (y/n)"
+
+- name: Stop if no updates needed
+  tags: manual_approval
+  when: approval.user_input != 'y'
+  ansible.builtin.meta: end_play
+
+- name: Continue if approved
+  tags: manual_approval
+  when: approval.user_input == 'y'
+  debug:
+    msg: "This has been approved"
+

@@ -8,5 +8,5 @@
     - common
     # - upload_files
     # - install
-    # - intermediate
+    - intermediate
     # - advanced
