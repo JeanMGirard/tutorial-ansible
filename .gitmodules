@@ -1,3 +1,6 @@
 [submodule "examples/ansible-workstation"]
 	path = examples/ansible-workstation
 	url = git@github.com:JeanMGirard/ansible-workstation.git
+[submodule "examples/ansible-examples"]
+	path = examples/ansible-examples
+	url = git@github.com:ansible/ansible-examples.git
