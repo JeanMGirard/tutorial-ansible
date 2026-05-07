@@ -1,0 +1,22 @@
+---
+- name: Loops | install common packages with loop
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  loop: "{{ intermediate_common_packages }}"
+  tags:
+    - loops
+
+- name: Loops | create demo lines in a file
+  ansible.builtin.lineinfile:
+    path: "{{ intermediate_demo_file }}"
+    line: "{{ item }}"
+    create: true
+    mode: "0644"
+  loop:
+    - "loop example line 1"
+    - "loop example line 2"
+    - "loop example line 3"
+  tags:
+    - loops

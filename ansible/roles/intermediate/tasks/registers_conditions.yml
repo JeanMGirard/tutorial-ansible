@@ -1,0 +1,24 @@
+---
+- name: Register | check if demo file exists
+  ansible.builtin.stat:
+    path: "{{ intermediate_demo_file }}"
+  register: demo_file_stat
+  tags:
+    - register
+
+- name: Condition | print state when file exists
+  ansible.builtin.debug:
+    msg: "Demo file exists and size is {{ demo_file_stat.stat.size }} bytes"
+  when: demo_file_stat.stat.exists
+  tags:
+    - when
+
+- name: Condition | create demo file if missing
+  ansible.builtin.copy:
+    dest: "{{ intermediate_demo_file }}"
+    content: "created by intermediate role\n"
+    mode: "0644"
+  when: not demo_file_stat.stat.exists
+  notify: restart demo service
+  tags:
+    - when

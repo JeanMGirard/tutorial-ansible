@@ -1,0 +1,25 @@
+---
+- name: Async | run long task in background
+  ansible.builtin.command: "sleep {{ intermediate_async_sleep_seconds }}"
+  async: "{{ intermediate_async_timeout }}"
+  poll: 0
+  register: async_job
+  changed_when: true
+  tags:
+    - async
+
+- name: Async | poll for completion
+  ansible.builtin.async_status:
+    jid: "{{ async_job.ansible_job_id }}"
+  register: async_poll
+  until: async_poll.finished
+  retries: 10
+  delay: 2
+  tags:
+    - async
+
+- name: Async | show result
+  ansible.builtin.debug:
+    var: async_poll
+  tags:
+    - async

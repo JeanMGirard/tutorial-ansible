@@ -1,0 +1,13 @@
+---
+# Variables used by the intermediate role examples.
+intermediate_demo_file: /tmp/ansible-intermediate-demo.txt
+intermediate_common_packages:
+  - curl
+  - jq
+intermediate_service_name: cron
+intermediate_enable_service_example: false
+intermediate_retry_delay: 2
+intermediate_retry_attempts: 3
+intermediate_async_sleep_seconds: 20
+intermediate_async_timeout: 60
+intermediate_command_to_wait_for: "test -f {{ intermediate_demo_file }}"

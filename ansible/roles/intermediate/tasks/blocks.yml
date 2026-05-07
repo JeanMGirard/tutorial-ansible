@@ -1,0 +1,18 @@
+---
+- name: Blocks | demonstrate block/rescue/always
+  block:
+    - name: Blocks | intentionally run a command that fails
+      ansible.builtin.command: /bin/false
+      changed_when: false
+
+  rescue:
+    - name: Blocks | rescue from failure
+      ansible.builtin.debug:
+        msg: "A task failed in the block, rescue section executed"
+
+  always:
+    - name: Blocks | always run cleanup message
+      ansible.builtin.debug:
+        msg: "Always section runs whether block succeeds or fails"
+  tags:
+    - blocks

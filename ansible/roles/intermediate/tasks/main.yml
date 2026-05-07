@@ -1,0 +1,37 @@
+---
+- name: Intermediate | include loop examples
+  ansible.builtin.include_tasks: loops.yml
+  tags:
+    - intermediate
+    - loops
+
+- name: Intermediate | include register and condition examples
+  ansible.builtin.include_tasks: registers_conditions.yml
+  tags:
+    - intermediate
+    - register
+    - when
+
+- name: Intermediate | include retries examples
+  ansible.builtin.include_tasks: retries_until.yml
+  tags:
+    - intermediate
+    - retries
+
+- name: Intermediate | include async examples
+  ansible.builtin.include_tasks: async.yml
+  tags:
+    - intermediate
+    - async
+
+- name: Intermediate | include block/rescue examples
+  ansible.builtin.include_tasks: blocks.yml
+  tags:
+    - intermediate
+    - blocks
+
+- name: Intermediate | include common modules examples
+  ansible.builtin.include_tasks: modules.yml
+  tags:
+    - intermediate
+    - modules

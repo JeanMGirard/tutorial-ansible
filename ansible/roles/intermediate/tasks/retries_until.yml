@@ -1,0 +1,17 @@
+---
+- name: Retries | wait for command success with until
+  ansible.builtin.shell: "{{ intermediate_command_to_wait_for }}"
+  register: wait_result
+  changed_when: false
+  failed_when: false
+  retries: "{{ intermediate_retry_attempts }}"
+  delay: "{{ intermediate_retry_delay }}"
+  until: wait_result.rc == 0
+  tags:
+    - retries
+
+- name: Retries | report command return code
+  ansible.builtin.debug:
+    msg: "wait_result.rc={{ wait_result.rc }} after retries"
+  tags:
+    - retries
