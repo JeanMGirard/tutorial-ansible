@@ -3,10 +3,10 @@
   hosts: ec2
   become: true
   serial: "{{ advanced_serial_percent | default('100%') }}"
-  max_fail_percentage: "{{ advanced_max_fail_percentage | default(100) }}"
+  max_fail_percentage: '{{ advanced_max_fail_percentage | default(100) }}'
   roles:
-    - common
-    # - upload_files
+    #- common
+    #upload_files
     # - install
     # - intermediate
-    # - advanced
+    - advanced

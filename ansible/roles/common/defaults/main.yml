@@ -4,4 +4,4 @@ common_packages:
   - git
   - htop
   - vim
-  # - golang-go
+  - golang-go

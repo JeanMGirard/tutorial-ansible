@@ -7,6 +7,7 @@ ansible/.generated/
 ansible/.cache/
 ansible/inventory/hosts.ini
 ansible/inventory/hosts.yml
+ansible/collections
 __pycache__/
 *.pyc
 .molecule/
