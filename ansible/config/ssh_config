@@ -5,4 +5,11 @@ Host *
     ServerAliveCountMax 10
     ControlMaster auto
     ControlPersist 5m
-#    ControlPath ~/.ssh/controlmasters/%r@%h:%p
+
+Host *.dev.tse.com
+  ProxyCommand ssh -W %h:%p tmplxapp-asd02.prd.tse.com
+  ForwardAgent yes
+
+Host *.asd.tse.ca
+  ProxyCommand ssh -W %h:%p tmplxapp-asd02.prd.tse.com
+  ForwardAgent yes
