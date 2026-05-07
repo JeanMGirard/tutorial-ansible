@@ -1,0 +1,19 @@
+---
+- name: Advanced | create delegated artifact on controller
+  ansible.builtin.lineinfile:
+    path: "{{ advanced_delegate_file }}"
+    create: true
+    mode: "0644"
+    line: "delegated from={{ inventory_hostname }} at={{ ansible_date_time.iso8601 }}"
+  delegate_to: "{{ advanced_delegate_target }}"
+
+- name: Advanced | run once then share fact to all hosts
+  ansible.builtin.set_fact:
+    advanced_shared_token: "token-{{ 9999 | random(seed=ansible_play_name) }}"
+  run_once: true
+  delegate_to: "{{ advanced_delegate_target }}"
+  delegate_facts: true
+
+- name: Advanced | access delegated facts from localhost
+  ansible.builtin.debug:
+    msg: "Shared token is {{ hostvars['localhost']['advanced_shared_token'] | default('undefined') }}"

@@ -1,0 +1,40 @@
+---
+- name: Advanced | ensure demo directory exists
+  ansible.builtin.file:
+    path: "{{ advanced_demo_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Advanced | flatten user/group matrix with subelements
+  ansible.builtin.set_fact:
+    advanced_user_group_matrix: >-
+      {{
+        advanced_users
+        | ansible.builtin.subelements('groups')
+        | map('join', ':')
+        | list
+      }}
+
+- name: Advanced | create deterministic payload hash and render info
+  ansible.builtin.copy:
+    dest: "{{ advanced_template_target }}"
+    mode: "0644"
+    content: |
+      app_name={{ advanced_json_payload.app.name }}
+      features={{ advanced_json_payload.features | join(',') }}
+      payload_sha1={{ advanced_json_payload | to_json | hash('sha1') }}
+      users={{ advanced_users | map(attribute='name') | list | join(',') }}
+      user_group_matrix={{ advanced_user_group_matrix | join(',') }}
+  notify: Advanced | report handler execution
+
+- name: Advanced | merge dictionaries with combine
+  ansible.builtin.set_fact:
+    advanced_merged_payload: >-
+      {{
+        {'app': {'region': 'local'}}
+        | combine(advanced_json_payload, recursive=True)
+      }}
+
+- name: Advanced | debug merged payload using nice JSON
+  ansible.builtin.debug:
+    msg: "{{ advanced_merged_payload | to_nice_json }}"

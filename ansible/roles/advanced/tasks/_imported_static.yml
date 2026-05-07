@@ -1,0 +1,4 @@
+---
+- name: Advanced | static import task example
+  ansible.builtin.debug:
+    msg: "This task is loaded at parse time via import_tasks."

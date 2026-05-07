@@ -1,0 +1,30 @@
+---
+# Variables used by the advanced role examples.
+advanced_demo_dir: /tmp/ansible-advanced
+advanced_demo_file: "{{ advanced_demo_dir }}/demo.txt"
+advanced_template_target: "{{ advanced_demo_dir }}/rendered.conf"
+advanced_serial_percent: "50%"
+advanced_batch_marker: "{{ advanced_demo_dir }}/batch-{{ inventory_hostname }}"
+advanced_delegate_target: localhost
+advanced_delegate_file: /tmp/ansible-advanced-delegate.log
+advanced_max_fail_percentage: 30
+advanced_block_required_cmd: /bin/echo
+advanced_json_payload:
+  app:
+    name: tutorial-app
+    env: dev
+    replicas: 2
+  features:
+    - retries
+    - serial
+    - delegation
+advanced_users:
+  - name: alice
+    shell: /bin/bash
+    groups:
+      - sudo
+      - adm
+  - name: bob
+    shell: /bin/sh
+    groups:
+      - users

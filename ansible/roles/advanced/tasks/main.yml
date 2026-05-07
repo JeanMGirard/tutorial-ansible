@@ -1,0 +1,32 @@
+---
+- name: Advanced | include includes/imports examples
+  ansible.builtin.import_tasks: includes_imports.yml
+  tags:
+    - advanced
+    - imports
+
+- name: Advanced | include data transform examples
+  ansible.builtin.include_tasks: data_transform.yml
+  tags:
+    - advanced
+    - filters
+    - set_fact
+
+- name: Advanced | include delegation examples
+  ansible.builtin.include_tasks: delegation.yml
+  tags:
+    - advanced
+    - delegation
+
+- name: Advanced | include strategy/serial examples
+  ansible.builtin.include_tasks: strategy_serial.yml
+  tags:
+    - advanced
+    - serial
+
+- name: Advanced | include error handling examples
+  ansible.builtin.include_tasks: error_handling.yml
+  tags:
+    - advanced
+    - blocks
+    - rescue

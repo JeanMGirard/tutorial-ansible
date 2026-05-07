@@ -2,7 +2,10 @@
 - name: Configure EC2 tutorial host
   hosts: ec2
   become: true
+  serial: "{{ advanced_serial_percent | default('100%') }}"
+  max_fail_percentage: "{{ advanced_max_fail_percentage | default(100) }}"
   roles:
     - common
-    - install
+    # - install
     # - intermediate
+    # - advanced

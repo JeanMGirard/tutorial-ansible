@@ -1,0 +1,4 @@
+---
+- name: Advanced | dynamic include task example
+  ansible.builtin.debug:
+    msg: "This task is loaded at runtime via include_tasks on {{ inventory_hostname }}."

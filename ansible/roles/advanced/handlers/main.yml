@@ -1,0 +1,4 @@
+---
+- name: Advanced | report handler execution
+  ansible.builtin.debug:
+    msg: "Advanced handler triggered on {{ inventory_hostname }}"

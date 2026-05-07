@@ -1,0 +1,15 @@
+---
+- name: Advanced | batch marker for serial demonstrations
+  ansible.builtin.copy:
+    dest: "{{ advanced_batch_marker }}"
+    mode: "0644"
+    content: |
+      host={{ inventory_hostname }}
+      batch={{ ansible_play_batch | join(',') }}
+      all_hosts={{ ansible_play_hosts_all | join(',') }}
+
+- name: Advanced | show current batch metadata
+  ansible.builtin.debug:
+    msg:
+      - "Current batch: {{ ansible_play_batch }}"
+      - "All hosts: {{ ansible_play_hosts_all }}"

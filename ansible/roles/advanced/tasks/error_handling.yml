@@ -1,0 +1,20 @@
+---
+- name: Advanced | demonstrate block/rescue/always with failed_when
+  block:
+    - name: Advanced | validate a required binary exists
+      ansible.builtin.command: "command -v {{ advanced_block_required_cmd }}"
+      register: advanced_required_cmd
+      changed_when: false
+      failed_when: advanced_required_cmd.rc != 0
+
+    - name: Advanced | show command output
+      ansible.builtin.debug:
+        msg: "Found required command: {{ advanced_required_cmd.stdout }}"
+  rescue:
+    - name: Advanced | rescue path
+      ansible.builtin.debug:
+        msg: "Required command {{ advanced_block_required_cmd }} was not found; rescue path executed."
+  always:
+    - name: Advanced | always path
+      ansible.builtin.debug:
+        msg: "Cleanup/always task ran on {{ inventory_hostname }}"

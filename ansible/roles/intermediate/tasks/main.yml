@@ -5,6 +5,12 @@
     - intermediate
     - loops
 
+- name: Intermediate | use conditions
+  ansible.builtin.include_tasks: conditions.yml
+  tags:
+    - intermediate
+    - when
+
 - name: Intermediate | include register and condition examples
   ansible.builtin.include_tasks: registers_conditions.yml
   tags:

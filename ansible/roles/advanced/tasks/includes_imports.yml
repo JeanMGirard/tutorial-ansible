@@ -1,0 +1,10 @@
+---
+- name: Advanced | import static task list
+  ansible.builtin.import_tasks: _imported_static.yml
+
+- name: Advanced | include dynamic task list
+  ansible.builtin.include_tasks: _included_dynamic.yml
+
+- name: Advanced | include dynamic task list conditionally
+  ansible.builtin.include_tasks: _included_dynamic.yml
+  when: ansible_facts['os_family'] == 'Debian'
