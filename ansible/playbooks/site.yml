@@ -6,6 +6,7 @@
   max_fail_percentage: "{{ advanced_max_fail_percentage | default(100) }}"
   roles:
     - common
+    - upload_files
     # - install
     # - intermediate
     # - advanced

@@ -1,0 +1,19 @@
+---
+# Example files rendered from role templates to remote hosts.
+upload_files_items:
+  - src: tutorial_app.conf.j2
+    dest: /etc/tutorial-app/tutorial_app.conf
+    owner: root
+    group: root
+    mode: "0644"
+    vars:
+      app_name: tutorial-app
+      app_env: tutorial
+      app_port: 8080
+  - src: motd.j2
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: "0644"
+    vars:
+      motd_title: "Ansible template example"

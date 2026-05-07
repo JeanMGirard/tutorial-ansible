@@ -1,0 +1,39 @@
+---
+- name: Upload files | validate role input
+  tags: upload
+  ansible.builtin.assert:
+    that:
+      - upload_files_items is iterable
+    fail_msg: "upload_files_items must be a list of template definitions"
+
+- name: Upload files | ensure destination directories exist
+  tags: upload
+  ansible.builtin.file:
+    path: "{{ item.dest | dirname }}"
+    state: directory
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "0755"
+  loop: "{{ upload_files_items }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  when: (item.dest | dirname) not in ['/', '.']
+
+- name: Upload files | render templates to remote host
+  tags: upload
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
+  loop: "{{ upload_files_items }}"
+  loop_control:
+    label: "{{ item.src }} -> {{ item.dest }}"
+  vars:
+    upload_file_vars: "{{ item.vars | default({}) }}"
+    app_name: "{{ upload_file_vars.app_name | default('demo-app') }}"
+    app_env: "{{ upload_file_vars.app_env | default('dev') }}"
+    app_port: "{{ upload_file_vars.app_port | default(8080) }}"
+    motd_title: "{{ upload_file_vars.motd_title | default('Managed by Ansible') }}"
+    template_target_path: "{{ item.dest }}"
