@@ -1,0 +1,5 @@
+---
+# Packages specific to the ec2 inventory group.
+install_packages_group:
+  - htop
+  - git

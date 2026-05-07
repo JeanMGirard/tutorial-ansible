@@ -1,0 +1,4 @@
+---
+# Packages installed on every managed host.
+install_packages_common:
+  - curl
