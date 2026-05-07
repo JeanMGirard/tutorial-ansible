@@ -128,4 +128,5 @@ resource "random_string" "vault_password" {
 resource "local_file" "vault_password" {
   filename = "${path.root}/../ansible/config/vault_pass"
   content  = random_string.vault_password.result
+  file_permission = "0600"
 }

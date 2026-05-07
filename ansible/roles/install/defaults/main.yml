@@ -1,0 +1,5 @@
+---
+# Default package lists consumed by the install role.
+install_packages_common: []
+install_packages_group: []
+install_packages_instance: []

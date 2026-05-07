@@ -1,0 +1,17 @@
+---
+- name: Build merged package list from common, group, and instance vars
+  ansible.builtin.set_fact:
+    install_packages_resolved: >-
+      {{
+        (
+          install_packages_common
+          + install_packages_group
+          + install_packages_instance
+        ) | unique
+      }}
+
+- name: Install resolved package list
+  ansible.builtin.package:
+    name: "{{ install_packages_resolved }}"
+    state: present
+  when: install_packages_resolved | length > 0
