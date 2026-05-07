@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Lint (yamllint + ansible-lint)",
+      "type": "shell",
+      "command": "task lint",
+      "problemMatcher": []
+    },
+    {
+      "label": "Molecule Test",
+      "type": "shell",
+      "command": "task test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Molecule Converge",
+      "type": "shell",
+      "command": "task converge",
+      "problemMatcher": []
+    },
+    {
+      "label": "Molecule Destroy",
+      "type": "shell",
+      "command": "task destroy",
+      "problemMatcher": []
+    }
+  ]
+}

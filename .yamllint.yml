@@ -1,0 +1,20 @@
+extends: default
+rules:
+  line-length: disable
+  truthy:
+    allowed-values: ['true', 'false', 'on', 'off']
+    check-keys: false
+  document-start: disable
+  braces: disable
+  brackets: disable
+  new-lines: disable
+  empty-lines: disable
+
+ignore: |
+  .git/
+  .venv/
+  .molecule/
+  .idea/
+  .vscode/
+  collections/
+  roles/**/.molecule/

@@ -8,3 +8,4 @@ ansible/inventory/*
 __pycache__/
 *.pyc
 .molecule/
+ansible/config/vault_pass

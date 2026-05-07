@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "redhat.ansible",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "editorconfig.editorconfig",
+    "ms-azuretools.vscode-docker",
+    "github.vscode-github-actions",
+    "tamasfe.even-better-toml"
+  ]
+}

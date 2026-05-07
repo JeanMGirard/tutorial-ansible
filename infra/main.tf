@@ -115,3 +115,17 @@ all:
         ec2_tutorial:
 EOT
 }
+
+
+resource "random_string" "vault_password" {
+  length  = 64
+  special = true
+  lower   = true
+  upper   = true
+  numeric = true
+}
+
+resource "local_file" "vault_password" {
+  filename = "${path.root}/../ansible/config/vault_pass"
+  content  = random_string.vault_password.result
+}

@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+dotenv:
+  - .env
+  - .env.example
+
+env:
+  ANSIBLE_CONFIG: ./ansible.cfg
+  ANSIBLE_VAULT_PASSWORD_FILE: ./config/vault_pass
+
+tasks:
+  venv:
+    desc: Create or load virtual environment
+    internal: true
+    silent: true
+    status:
+      - if [ -z "$VIRTUAL_ENV" ]; then exit 1; fi
+    cmds:
+      - source ../.venv/bin/activate
+
+  ansible:encrypt:
+    deps: [ venv ]
+    cmds:
+      - ansible-vault encrypt ./inventory/group_vars/windows.yml
+      - ansible-vault encrypt ./inventory/group_vars/linux.yml
+
+  ansible:decrypt:
+    deps: [ venv ]
+    cmds:
+      - ansible-vault decrypt ./inventory/group_vars/windows.yml
+      - ansible-vault decrypt ./inventory/group_vars/linux.yml

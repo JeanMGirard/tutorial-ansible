@@ -1,0 +1,17 @@
+{
+  "ansible.python.interpreterPath": "python",
+  "ansible.ansible.useFullyQualifiedCollectionNames": true,
+  "ansible.lint.arguments": "-p",
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.yml": "yaml",
+    "*.yaml": "yaml",
+    "ansible.cfg": "ini"
+  },
+  "yaml.customTags": [
+    "!vault scalar",
+    "!unsafe"
+  ],
+  "yaml.format.enable": true,
+  "yaml.validate": true
+}

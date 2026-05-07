@@ -1,0 +1,29 @@
+default_install_hook_types:
+  - pre-commit
+#  - pre-push
+#  - commit-msg
+  #  - prepare-commit-msg
+
+ci:
+  autoupdate_schedule: quarterly
+
+repos:
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v26.3.0
+    hooks:
+      - id: ansible-lint
+
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.22.0
+    hooks:
+      - id: markdownlint-cli2
+        additional_dependencies:
+          - markdownlint-rule-relative-links@^2.2.1
