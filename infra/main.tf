@@ -42,7 +42,7 @@ resource "tls_private_key" "ansible" {
 }
 
 resource "local_file" "private_key" {
-  filename        = "${path.module}/.generated/ansible-ec2.pem"
+  filename        = "${path.root}/../ansible/.generated/ansible-ec2.pem"
   content         = tls_private_key.ansible.private_key_pem
   file_permission = "0600"
 }
